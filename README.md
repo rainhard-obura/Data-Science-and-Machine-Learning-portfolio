@@ -11,3 +11,6 @@ Feel free to explore the diverse projects presented here, each designed to demon
 1. Financial Inclusion in Africa
    - *Overview*: Predicting which individuals are most likely to have or use a bank account
    - *Technologies*: Python, Machine Learning
+2. Fraud detection in electricity and gas consumption in Tunisia
+   - * Overview*: Detect clients involved in fraudulent activities in  gas and electricity consumption
+   - *Technologies*: Python, pandas, scikit-learn, Tensorflow/keras
