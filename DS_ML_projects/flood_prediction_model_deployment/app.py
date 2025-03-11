@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template #type: ignore
 import numpy as np
-import tensorflow as tf
+import tensorflow as tf #type:ignore
 import os
 from model import load_model, preprocess_input
 
