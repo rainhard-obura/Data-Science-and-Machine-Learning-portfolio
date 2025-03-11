@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Flood Prediction Model</h1>
+    <form id="prediction-form">
+        <label for="precipitation">Precipitation Data (comma-separated):</label>
+        <input type="text" id="precipitation" name="precipitation" required>
+        
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        
+        <button type="submit">Predict</button>
+    </form>
+    <p id="result"></p>
+    
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            let precipitation = document.getElementById('precipitation').value.split(',').map(Number);
+            let imageFile = document.getElementById('image').files[0];
+            let reader = new FileReader();
+            
+            reader.onload = async function(event) {
+                let imageData = event.target.result;
+                let response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({precipitation: precipitation, image: imageData})
+                });
+                let result = await response.json();
+                document.getElementById('result').innerText = JSON.stringify(result);
+            };
+            reader.readAsDataURL(imageFile);
+        });
+    </script>
+</body>
+</html>
